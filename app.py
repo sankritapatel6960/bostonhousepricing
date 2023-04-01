@@ -1,5 +1,7 @@
 import pickle 
 import json
+import warnings
+warnings.filterwarnings("ignore")
 
 from flask import Flask, request, app, jsonify, url_for,render_template
 import numpy as np
@@ -30,8 +32,9 @@ def predict():
     final_input = scalar.transform(np.array(data).reshape(1,-1))
     print(final_input)
     output = model.predict(final_input)[0]
-    return render_template("home.html",prediction_tet = "The House Price Prediction is {}".format(output))
+    return render_template("home.html",prediction_text = "The House Price Prediction is {}".format(output))
 
 
 if __name__ =="__main__":
     app.run(debug = True)
+    
